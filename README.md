@@ -1,6 +1,6 @@
 # 📦 Inventory Management System
 
-A **fully functional**, interview-worthy single-user inventory management system demonstrating modern Laravel architecture, design patterns, and best practices.
+A **fully functional** single-user inventory management system demonstrating modern Laravel architecture, design patterns, and best practices.
 
 ![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat-square&logo=laravel)
 ![Vue.js](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=flat-square&logo=vue.js)
@@ -443,65 +443,8 @@ resources/js/
 | POST | `/inventory/deduct` | InventoryController@deduct | Process deduction |
 | GET | `/inventory/{item}/history` | InventoryController@history | Item history |
 
----
 
-## 🧪 Testing (Interview Discussion)
-
-While tests aren't implemented, here's how the architecture supports testing:
-
-```php
-// Unit test example (service layer)
-public function test_deduct_throws_exception_for_insufficient_stock()
-{
-    $mockRepo = Mockery::mock(ItemRepositoryInterface::class);
-    $mockRepo->shouldReceive('findById')->andReturn($item);
-    
-    $service = new InventoryService($mockRepo);
-    
-    $this->expectException(InsufficientStockException::class);
-    $service->deductItems([['item_id' => 1, 'quantity' => 1000]]);
-}
-```
 
 ---
 
-## 📝 Interview Discussion Points
 
-1. **Why Service Layer?**
-   - Keeps controllers thin
-   - Business logic is reusable and testable
-   - Single place for transaction management
-
-2. **Why Repository Pattern?**
-   - Abstracts data access
-   - Easy to mock for testing
-   - Centralizes query logic
-
-3. **Why Enums?**
-   - Type safety vs magic strings
-   - IDE autocompletion
-   - Centralized status/type definitions
-
-4. **Why Inertia.js?**
-   - SPA experience without API complexity
-   - Shared validation between client/server
-   - Server-side routing with Vue components
-
-5. **Database Design Choices?**
-   - Normalized schema (3NF)
-   - Indexes on frequently queried columns
-   - Foreign key constraints for integrity
-   - Audit trail via transactions table
-
----
-
-## 📜 License
-
-MIT License - Built for learning and interviews!
-
----
-
-<p align="center">
-  <strong>Built with ❤️ demonstrating Laravel best practices</strong><br>
-  Service Layer • Repository Pattern • Dependency Injection • Enums • Form Requests
-</p>
